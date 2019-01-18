@@ -8,24 +8,13 @@
     <meta name="viewport" content="user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1,width=device-width">
 
     <title>Quasar App - quasartest</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons" rel="stylesheet" type="text/css">
     <link href="https://cdn.jsdelivr.net/npm/animate.css@^3.5.2/animate.min.css" rel="stylesheet">
-    <link rel="icon" href="favicon.png" type="image/x-icon">
+    <link rel="icon" href=<%= asset_url("favicon.png") %> type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/quasar-framework@^0.17.0/dist/umd/quasar.mat.rtl.min.css" rel="stylesheet" type="text/css">
-
-    <style type="text/css">
-      .logo-container {
-        width: 255px;
-        height: 242px;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translateX(-50%) translateY(-50%);
-      }
-      .logo {
-        position: absolute;
-      }
-    </style>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
     <div id="q-app">
@@ -69,49 +58,27 @@
           </q-list>
         </q-layout-drawer>
 
-        <q-page-container>
-          <my-page></my-page>
+        <q-page-container class="row" id="myapp">
+          <q-page padding>
+            <div id="app">
+              <%= yield %>
+            </div>
+          </q-page>
         </q-page-container>
       </q-layout>
     </div>
 
-    <script type="text/x-template" id="my-page">
-      <q-page padding>
-
-        <!-- page content; replace this entirely -->
-        <div class="row flex-center absolute-full">
-          <%= yield %>
-        </div>
-
-      </q-page>
-    </script>
-
     
+
     <script src="https://cdn.jsdelivr.net/npm/vue@latest/dist/vue.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/quasar-framework@^0.17.0/dist/umd/quasar.mat.umd.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/quasar-framework@^0.17.0/dist/umd/i18n.es.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/quasar-framework@^0.17.0/dist/umd/i18n.es.umd.min.js"></script> 
+    
+    <%= javascript_pack_tag 'quasar_config' %> 
+    <%= javascript_pack_tag 'application' %>
+    <%= javascript_pack_tag 'hello_vue' %>
 
-    <script>
-      Quasar.i18n.set(Quasar.i18n.es)
-      
-      Vue.component('my-page', {
-        template: '#my-page'
-      })
+    
 
-      new Vue({
-        el: '#q-app',
-        data: function () {
-          return {
-            version: Quasar.version,
-            drawerState: true
-          }
-        },
-        methods: {
-          launch: function (url) {
-            Quasar.utils.openURL(url)
-          }
-        }
-      })
-    </script>
   </body>
 </html>

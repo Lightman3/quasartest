@@ -5,18 +5,32 @@
 // like app/views/layouts/application.html.erb.
 // All it does is render <div>Hello Vue</div> at the bottom of the page.
 
-import Vue from 'vue'
-import App from '../app.vue'
+// import Vue from 'vue'
+// import App from '../app.vue'
 
-document.addEventListener('DOMContentLoaded', () => {
-  const el = document.body.appendChild(document.createElement('hello'))
-  const app = new Vue({
-    el,
-    render: h => h(App)
-  })
+// document.addEventListener('DOMContentLoaded', () => {
+//   const el = document.body.appendChild(document.createElement('hello'))
+//   const app = new Vue({
+//     el,
+//     render: h => h(App)
+//   })
 
-  console.log(app)
-})
+//   // console.log(app)
+// })
+
+// import Vue from 'vue'
+// import Vue from 'vue/dist/vue.esm'
+// import App from '../app.vue'
+
+// document.addEventListener('DOMContentLoaded', () => {
+//   const el = '#hello'
+//   const app = new Vue({
+//     el,
+//     render: h => h(App)
+//   })
+
+//   console.log(app)
+// })
 
 
 // The above code uses Vue without the compiler, which means you cannot
@@ -53,19 +67,44 @@ document.addEventListener('DOMContentLoaded', () => {
 // yarn add 'vue-turbolinks'
 //
 // Then uncomment the code block below:
-//
-// import TurbolinksAdapter from 'vue-turbolinks'
-// import Vue from 'vue/dist/vue.esm'
-// import App from '../app.vue'
-//
-// Vue.use(TurbolinksAdapter)
-//
+
+import TurbolinksAdapter from 'vue-turbolinks'
+import Vuejs from 'vue/dist/vue.esm'
+Vuejs.use(TurbolinksAdapter)
+
+console.log("Hello vue cargado.")
+
+// import Vue from 'vue'
+import App from '../app.vue'
+
+
+// document.addEventListener('DOMContentLoaded', () => {
+//   const el = '#hello'
+//   const app = new Vue({
+//     el,
+//     render: h => h(App)
+//   })
+
+//   console.log(app)
+// })
+
 // document.addEventListener('turbolinks:load', () => {
 //   const app = new Vue({
-//     el: '#hello',
+//     el: '#app',
 //     data: {
 //       message: "Can you say hello?"
 //     },
-//     components: { App }
+//     render: h => h(App)
 //   })
 // })
+
+
+document.addEventListener('turbolinks:load', () => {
+  const app = new Vuejs({
+    el: "#app",
+    data: {
+      message: "Can you say hello?"
+    },
+    components: { App }
+  })
+})
